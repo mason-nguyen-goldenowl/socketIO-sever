@@ -17,7 +17,6 @@ const io = new Server(sever, {
     methods: ["GET", "POST"],
   },
 });
-app.use("/", socketRoute);
 const socketRoute = router.get("/", function (req, res) {
   io.on("connection", (socket) => {
     console.log("Client Connected: ", socket.id);
@@ -36,6 +35,7 @@ const socketRoute = router.get("/", function (req, res) {
     });
   });
 });
+app.use("/", socketRoute);
 
 const port = process.env.PORT || 3838;
 
